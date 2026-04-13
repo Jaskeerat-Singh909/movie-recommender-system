@@ -13,7 +13,13 @@ def fetch_poster(movie_id):
     return "https://image.tmdb.org/t/p/w500/" + data['poster_path']
 
 movies = pickle.load(open('movies.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+tfidf = TfidfVectorizer(max_features=5000, stop_words='english')
+vectors = tfidf.fit_transform(movies['tags']).toarray()
+
+similarity = cosine_similarity(vectors)
 
 def recommend(movie):
     if movie not in movies['title'].values:
