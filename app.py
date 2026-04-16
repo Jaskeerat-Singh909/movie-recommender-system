@@ -49,7 +49,7 @@ vectors = tfidf.fit_transform(movies['tags']).toarray()
 similarity = cosine_similarity(vectors)
 
 def fetch_poster(movie_name):
-    api_key = "d469d013fcefa9da1cf7213d4896dbd0"
+    api_key = "ae5d858b83a2085e55c3904041bb9aad"
     
     try:
         url = f"https://api.themoviedb.org/3/search/movie?api_key={api_key}&query={movie_name}"
